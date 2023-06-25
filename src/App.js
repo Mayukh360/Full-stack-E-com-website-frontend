@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-
+import Checkout from "./Pages/Checkout";
 import HeaderCart from "./Component/Header/HeaderCart";
 import ProductItem from "./Component/Product/ProductItem";
 import Cart from "./Component/Cart/Cart";
@@ -7,7 +7,6 @@ import CartProvider from "./Component/Store/CartProvider";
 import Heading from "./Component/Header/Heading";
 import { Routes, Route } from "react-router-dom";
 import About from "./Pages/About";
-
 import Home from "./Pages/Home";
 import Contact from "./Pages/Contact";
 import AuthForm from "./Pages/AuthForm";
@@ -19,6 +18,7 @@ import ProductItem4 from "./Component/Product/ProductItem4";
 import ProductItem5 from "./Component/Product/ProductItem5";
 import Privacy from "./Pages/Privacy";
 import Terms from "./Pages/Terms";
+import Successful from "./Pages/Successful";
 
 function App() {
   // const Navigate=useNavigate()
@@ -42,6 +42,8 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/privacy" element={<Privacy />} />
         <Route path="/terms" element={<Terms />} />
+        <Route path="/checkout" element={<Checkout />} />
+        <Route path="/success" element={<Successful/>} />
         {authCtx.isLoggedIn ? (
           <Route path="/productitem" element={<ProductItem />} />
         ) : (

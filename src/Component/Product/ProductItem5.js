@@ -1,60 +1,68 @@
-import React, { Fragment, useState } from "react";
-import { Button, Col, Container, Row, Alert } from "react-bootstrap";
+import React, { Fragment } from "react";
+import { Button, Col, Container, Row } from "react-bootstrap";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import classes from "./Product.module.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Prod1 from '../../assets5/prod1.webp'
+import Prod2 from '../../assets5/prod2.jpg'
+import Prod3 from '../../assets5/prod3.jpg'
+import Prod4 from '../../assets5/prod4.jpg'
+import Prod5 from '../../assets5/prod5.jpg'
+import Prod6 from '../../assets5/prod6.jpg'
+import Prod7 from '../../assets5/prod7.jpg'
+import Prod8 from '../../assets5/prod8.jpg'
 
 const productsArr = [
   {
     title: "Boat Smart Watch",
     price: 800,
     imageUrl:
-      "https://www.mivi.in/cdn-cgi/image/width=2000,f=auto,quality=90/assets/model-e/black.png",
+      Prod1,
     amount: 1,
   },
   {
     title: "I-Phone",
     price: 48000,
     imageUrl:
-      "https://kddi-h.assetsadobe3.com/is/image/content/dam/au-com/mobile/mb_img_58.jpg?scl=1",
+    Prod2,
     amount: 1,
   },
   {
     title: "Samsung S-23 Ultra",
     price: 90000,
-    imageUrl: "https://m.media-amazon.com/images/I/61VfL-aiToL._SX679_.jpg",
+    imageUrl: Prod3,
     amount: 1,
   },
   {
     title: "Samsung Z-Flip",
     price: 78000,
-    imageUrl: "https://m.media-amazon.com/images/I/71MmJNwZcML._SX679_.jpg",
+    imageUrl: Prod4,
     amount: 1,
   },
   {
     title: "Oneplus 11",
     price: 61000,
-    imageUrl: "https://m.media-amazon.com/images/I/61amb0CfMGL._SX679_.jpg",
+    imageUrl: Prod5,
     amount: 1,
   },
   {
     title: "Apple Smart Watch",
     price: 33000,
-    imageUrl: "https://m.media-amazon.com/images/I/71LfnkRgZ4L._SX679_.jpg",
+    imageUrl: Prod6,
     amount: 1,
   },
   {
     title: "Hp Laptop",
     price: 56000,
-    imageUrl: "https://m.media-amazon.com/images/I/81koa5VFokL._SX679_.jpg",
+    imageUrl: Prod7,
     amount: 1,
   },
   {
     title: "Zebronics Keyboard",
     price: 999,
-    imageUrl: "https://m.media-amazon.com/images/I/71fWGZ2GOOL._SX679_.jpg",
+    imageUrl: Prod8,
     amount: 1,
   },
 ];
@@ -62,17 +70,17 @@ const productsArr = [
 export default function ProductItem5() {
   const navigate = useNavigate();
 
-  const enteredEmail = localStorage.getItem("email");
-  const changedemail = enteredEmail.replace("@", "").replace(".", "");
-
   async function btnClickHandler(item) {
     toast.dark(`${item.title} added to cart`);
-    await axios.post(
-      `https://e-commerce-2-ad090-default-rtdb.firebaseio.com//user/${changedemail}.json`,
-      item
-    );
-    //Custom alert "Item added to cart"
-  }
+
+    await axios.post("http://localhost:3000/getData", item, {
+      headers: {
+        Authorization: localStorage.getItem("token"), // Include the JWT token from local storage
+      },
+    });
+
+    console.log(item)
+}
   const prevnavigateHandler = () => {
     navigate("/shoes");
   };

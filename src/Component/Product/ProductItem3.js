@@ -1,10 +1,19 @@
-import React, { Fragment,useState } from "react";
-import { Button, Col, Container, Row,Alert } from "react-bootstrap";
+import React, { Fragment } from "react";
+import { Button, Col, Container, Row } from "react-bootstrap";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import classes from './Product.module.css'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Prod1 from '../../assets3/Spider.webp'
+import Prod2 from '../../assets3/prod2.webp'
+import Prod3 from '../../assets3/prod3.webp'
+import Prod4 from '../../assets3/prod4.webp'
+import Prod5 from '../../assets3/prod5.webp'
+import Prod6 from '../../assets3/prod6.webp'
+import Prod7 from '../../assets3/prod7.webp'
+import Prod8 from '../../assets3/prod8.jpg'
+
 
 const productsArr = [
   
@@ -12,56 +21,56 @@ const productsArr = [
     title: "Spiderman Hoodie",
     price: 999,
     imageUrl:
-      "https://www.redwolf.in/image/cache/catalog/sweatshirts/spider-man-logo-hoodie-india-700x700.jpg",
+      Prod1,
     amount: 1,
   },
   {
     title: "T-Shirt Pack of Three",
     price: 100,
     imageUrl:
-      "https://imagescdn.pantaloons.com/img/app/product/7/736575-8227267.jpg",
+      Prod2,
     amount: 1,
   },
   {
     title: "Blue Denim Dress",
     price: 1900,
     imageUrl:
-      "https://imagescdn.pantaloons.com/img/app/product/7/740340-8294647.jpg",
+      Prod3,
     amount: 1,
   },
   {
     title: "Pink Ghagra Choli ",
     price: 100,
     imageUrl:
-      "https://imagescdn.pantaloons.com/img/app/product/7/757966-8655965.jpg",
+      Prod4,
     amount: 1,
   },
   {
     title: "Blue T-Shirt ",
     price: 1500,
     imageUrl:
-      "https://imagescdn.pantaloons.com/img/app/product/7/726813-8058130.jpg",
+      Prod5,
     amount: 1,
   },
   {
     title: "Peach regular Jumpsuit",
     price: 1000,
     imageUrl:
-      "https://imagescdn.pantaloons.com/img/app/product/7/726819-8058155.jpg",
+      Prod6,
     amount: 1,
   },
   {
     title: "Blue Dress",
     price: 900,
     imageUrl:
-      "https://imagescdn.pantaloons.com/img/app/product/7/755655-8630093.jpg",
+      Prod7,
     amount: 1,
   },
   {
     title: "White Top",
     price: 1100,
     imageUrl:
-      "https://imagescdn.pantaloons.com/img/app/product/7/735219-9292768.jpg",
+      Prod8,
     amount: 1,
   },
   
@@ -73,19 +82,17 @@ export default function ProductItem3() {
   
    const navigate=useNavigate();
 
-  const enteredEmail = localStorage.getItem("email");
-  const changedemail = enteredEmail.replace("@", "").replace(".", "");
-
-  async function btnClickHandler(item) {
+   async function btnClickHandler(item) {
     toast.dark(`${item.title} added to cart`);
-   await axios.post(
-      `https://e-commerce-2-ad090-default-rtdb.firebaseio.com//user/${changedemail}.json`,
-      item
-    );
-    //Custom alert "Item added to cart"
-    
-    
-  }
+
+    await axios.post("http://localhost:3000/getData", item, {
+      headers: {
+        Authorization: localStorage.getItem("token"), // Include the JWT token from local storage
+      },
+    });
+
+    console.log(item)
+}
   const navigateHandler=()=>{
     navigate('/shoes')
   }

@@ -1,5 +1,5 @@
-import React, { Fragment, useState } from "react";
-import { Button, Col, Container, Row, Alert } from "react-bootstrap";
+import React, { Fragment } from "react";
+import { Button, Col, Container, Row} from "react-bootstrap";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import classes from "./Product.module.css";
@@ -76,19 +76,16 @@ const productsArr = [
 export default function ProductItem2() {
 
   const navigate = useNavigate();
-
-  const enteredEmail = localStorage.getItem("email");
-  const changedemail = enteredEmail.replace("@", "").replace(".", "");
-
   async function btnClickHandler(item) {
-    toast.dark(`${item.title} added to cart`);
-    await axios.post(
-      `https://e-commerce-2-ad090-default-rtdb.firebaseio.com//user/${changedemail}.json`,
-      item
-    );
-    //Custom alert "Item added to cart"
-
-   
+      toast.dark(`${item.title} added to cart`);
+  
+      await axios.post("http://localhost:3000/getData", item, {
+        headers: {
+          Authorization: localStorage.getItem("token"), // Include the JWT token from local storage
+        },
+      });
+  
+      console.log(item)
   }
   const navigateHandler = () => {
     navigate("/kidsclothing");

@@ -10,6 +10,8 @@ import ProductItem3 from '../Component/Product/ProductItem3'
 import ProductItem4 from '../Component/Product/ProductItem3'
 import Privacy from '../Pages/Privacy'
 import Terms from '../Pages/Terms'
+import Checkout from '../Pages/Checkout'
+import Successful from '../Pages/Successful'
 
 const router= createBrowserRouter([
     { path:'/about', element:<About/>},
@@ -23,6 +25,8 @@ const router= createBrowserRouter([
     { path:'/accessories', element:<ProductItem4/>},
     { path:'/privacy', element:<Privacy/>},
     { path:'/terms', element:<Terms/>},
+    { path:'/checkout', element:<Checkout/>},
+    { path:'/success', element:<Successful/>}
   
 ])
 export default function RenderPage() {

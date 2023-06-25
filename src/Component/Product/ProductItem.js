@@ -1,5 +1,5 @@
-import React, { Fragment, useState } from "react";
-import { Button, Col, Container, Row, Alert } from "react-bootstrap";
+import React, { Fragment } from "react";
+import { Button, Col, Container, Row } from "react-bootstrap";
 import classes from './Product.module.css'
 import Shirt from '../../assets1/Shirt.jpeg'
 import Jacket from '../../assets1/Jacket.jpg'
@@ -79,10 +79,7 @@ const productsArr = [
 export default function ProductItem() {
   
   const navigate = useNavigate();
-
-  // const enteredEmail = localStorage.getItem("email");
-  // const changedemail = enteredEmail.replace("@", "").replace(".", "");
-  async function btnClickHandler(item) {
+async function btnClickHandler(item) {
     toast.dark(`${item.title} added to cart`);
 
     await axios.post("http://localhost:3000/getData", item, {
@@ -90,22 +87,18 @@ export default function ProductItem() {
         Authorization: localStorage.getItem("token"), // Include the JWT token from local storage
       },
     });
-    // await fetch(
-    //   `https://e-commerce-2-ad090-default-rtdb.firebaseio.com//user/${changedemail}.json`,
-    //   {
-    //     method: "POST",
-    //     body: JSON.stringify(item),
-    //     headers: { "Content-Type": "application/json" },
-    //   }
-    // ); /// complete the code using fire base
-    //Custom alert "Item added to cart"
+
     console.log(item)
 }
   const navigateHandler = () => {
     navigate("/womensclothing");
   };
+  const temp=()=>{
+    navigate('/success')
+  }
   return (
     <Fragment>
+      <button onClick={temp}>TEEEMMPP</button>
       <Container style={{ marginBottom: "1rem", marginTop: "1rem" }}>
       
         <Row>

@@ -1,87 +1,84 @@
-import React, { Fragment, useState } from "react";
-import { Button, Col, Container, Row, Alert } from "react-bootstrap";
+import React, { Fragment } from "react";
+import { Button, Col, Container, Row } from "react-bootstrap";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import classes from "./Product.module.css";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Prod1 from '../../assets4/prod1.avif'
+import Prod2 from '../../assets4/prod2.jpg'
+import Prod3 from '../../assets4/prod3.jpg'
+import Prod4 from '../../assets4/prod4.jpg'
+import Prod5 from '../../assets4/prod5.jpg'
+import Prod6 from '../../assets4/prod6.jpg'
+import Prod7 from '../../assets4/prod7.jpg'
+import Prod8 from '../../assets4/prod8.jpg'
 
 const productsArr = [
   {
     title: "Asics Shoes",
     price: 1800,
     imageUrl:
-      "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/5cdbd9c71cd2432db2e7cf989bf6c050_9366/Gazelle_Shoes_Green_IG0671_HM1.jpg",
+      Prod1,
     amount: 1,
   },
   {
     title: "Campus Shoes",
     price: 2200,
-    imageUrl:
-      "https://m.media-amazon.com/images/I/61MGVjbYydL._UY695_.jpg",
+    imageUrl: Prod2,
     amount: 1,
   },
   {
     title: "Nike Women's Shoe",
     price: 4800,
-    imageUrl:
-      "https://m.media-amazon.com/images/I/71D0VFdZ2vL._UY695_.jpg",
+    imageUrl: Prod3,
     amount: 1,
   },
   {
     title: "Puma Shoes",
     price: 4800,
-    imageUrl:
-      "https://m.media-amazon.com/images/I/51nafVSB7RL._UY695_.jpg",
+    imageUrl: Prod4,
     amount: 1,
   },
   {
     title: "Strappy Heel",
     price: 2000,
-    imageUrl:
-      "https://m.media-amazon.com/images/I/61UKJ0I1FbL._UY695_.jpg",
+    imageUrl: Prod5,
     amount: 1,
   },
   {
     title: "Onemix Shoes",
     price: 27000,
-    imageUrl:
-      "https://m.media-amazon.com/images/I/71c7zI2R0uL._UY695_.jpg",
+    imageUrl: Prod6,
     amount: 1,
   },
   {
     title: "Cole Hann Sandle",
     price: 3000,
-    imageUrl:
-      "https://m.media-amazon.com/images/I/71KcUfQAZ4L._UX695_.jpg",
+    imageUrl: Prod7,
     amount: 1,
   },
   {
     title: "Nike Lebron",
     price: 28000,
-    imageUrl:
-      "https://m.media-amazon.com/images/I/61gL9DaIzZL._UX695_.jpg",
+    imageUrl: Prod8,
     amount: 1,
   },
- 
 ];
 
 export default function ProductItem4() {
- 
   const navigate = useNavigate();
-
-  const enteredEmail = localStorage.getItem("email");
-  const changedemail = enteredEmail.replace("@", "").replace(".", "");
 
   async function btnClickHandler(item) {
     toast.dark(`${item.title} added to cart`);
-    await axios.post(
-      `https://e-commerce-2-ad090-default-rtdb.firebaseio.com//user/${changedemail}.json`,
-      item
-    );
-    //Custom alert "Item added to cart"
 
-   
+    await axios.post("http://localhost:3000/getData", item, {
+      headers: {
+        Authorization: localStorage.getItem("token"), // Include the JWT token from local storage
+      },
+    });
+
+    console.log(item);
   }
   const navigateHandler = () => {
     navigate("/accessories");
@@ -92,7 +89,6 @@ export default function ProductItem4() {
   return (
     <Fragment>
       <Container style={{ marginBottom: "1rem", marginTop: "1rem" }}>
-      
         <Row>
           {productsArr.map((item) => (
             <Col

@@ -5,6 +5,7 @@ import axios from "axios";
 
 import CartItem from "./CartItem";
 import { Alert } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -12,8 +13,7 @@ export default function Cart(props) {
   const [productList, setProductList] = useState([]);
   const [showAlert, setShowAlert] = useState(false);
 
-  // const hasItem = cartCtx.items.length > 0;
-  //******* */
+  const navigate=useNavigate()
 
    const userId=localStorage.getItem('userId');
 
@@ -24,6 +24,7 @@ export default function Cart(props) {
       const productList = Object.keys(data).map((key) => {
         const item = data[key];
         // Add the condition to filter based on userId
+        // eslint-disable-next-line
         if (item.userId == userId) {
           return {
             id: item.id,
@@ -108,20 +109,21 @@ export default function Cart(props) {
 
   async function orderPlaceHandler() {
     if (productList.length === 0) return;
+     navigate('/checkout')
+     props.onHide();
+    // try {
+    //   for (const item of productList) {
+    //     axios.delete(
+    //       `http://localhost:3000/getData/${item.id}.json`
+    //     );
+    //     console.log(item.id);
+    //   }
 
-    try {
-      for (const item of productList) {
-        axios.delete(
-          `http://localhost:3000/getData/${item.id}.json`
-        );
-        console.log(item.id);
-      }
-
-      setProductList([]);
-      setShowAlert(true);
-    } catch (error) {
-      console.log(error);
-    }
+    //   setProductList([]);
+    //   setShowAlert(true);
+    // } catch (error) {
+    //   console.log(error);
+    // }
   }
 
   const hasItem = productList.length > 0;
