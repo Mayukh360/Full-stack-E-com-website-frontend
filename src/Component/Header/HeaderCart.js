@@ -42,7 +42,7 @@ export default function HeaderCart(props) {
           </Nav.Link>
         </Nav>
         {authCtx.isLoggedIn && (
-          <Button onClick={logoutHandler} variant="danger">
+          <Button onClick={logoutHandler} variant="danger" style={{border:'1px solid white'}}>
             <span className={classes.cartText}>Logout</span>
           </Button>
         )}
@@ -50,9 +50,9 @@ export default function HeaderCart(props) {
 
       {authCtx.isLoggedIn && (
         <Button
-          style={{ marginRight: "20px" }}
+          style={{ marginRight: "20px", border:'1px solid white' }}
           onClick={props.onShow}
-          variant="danger"
+          variant="info"
         >
           <div className={classes.cartButton}>
             <FaShoppingCart className={classes.cartIcon} /> {/* Add the icon */}

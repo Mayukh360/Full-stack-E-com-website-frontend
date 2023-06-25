@@ -16,9 +16,9 @@ const CartItem = (props) => {
         </div>
       </div>
       <div >
-         <Button  onClick={props.onRemove} variant="danger">Delete</Button>{' '}
-         <Button onClick={props.onAdd} variant="success">Increase</Button>{' '}
-         <Button onClick={props.onDecrease} variant="warning">Decrease</Button>{' '}
+         <Button  onClick={props.onRemove} variant="danger" style={{border:'1px solid black'}} >Delete</Button>{' '}
+         <Button onClick={props.onAdd} variant="success" style={{border:'1px solid black'}}>Increase</Button>{' '}
+         <Button onClick={props.onDecrease} variant="warning" style={{border:'1px solid black'}}>Decrease</Button>{' '}
       </div>
     </li>
   );

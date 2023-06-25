@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { loadStripe } from "@stripe/stripe-js";
 import { CardElement } from "@stripe/react-stripe-js";
+import "tailwindcss/tailwind.css";
 
 export default function Checkout() {
   const [checkoutItems, setCheckoutItems] = useState([]);
@@ -32,19 +33,19 @@ export default function Checkout() {
   const checkoutHandler = async () => {
     try {
       const stripe = await stripePromise;
-  
+
       // Create a checkout session on the server
       const response = await axios.post("http://localhost:3000/checkout", {
         items: checkoutItems,
       });
-  
+
       const { sessionId } = response.data;
-  
+
       // Redirect to Stripe Checkout page
       const result = await stripe.redirectToCheckout({
         sessionId: sessionId,
       });
-  
+
       if (result.error) {
         console.error(result.error.message);
         // Handle redirection error
@@ -54,24 +55,28 @@ export default function Checkout() {
       // Handle error
     }
   };
-  
 
   return (
-    <div>
-      <h1>Checkout Page</h1>
-      <div>
+    <div className="container mx-auto py-8">
+      <h1 className="text-2xl font-bold mb-4">Checkout Page</h1>
+      <div className="grid gap-4">
         {checkoutItems.map((item) => (
-          <div key={item.id}>
+          <div key={item.id} className="border p-4">
             {/* <img src={item.imageUrl} alt={item.title} /> */}
-            <h3>{item.title}</h3>
+            <h3 className="text-lg font-semibold mb-2">{item.title}</h3>
             <p>Price: {item.price}</p>
             <p>Quantity: {item.amount}</p>
             {/* Add additional information as needed */}
           </div>
         ))}
       </div>
-      <h3>{sum}</h3>
-      <button onClick={checkoutHandler}>Checkout</button>
+      <h3 className="text-xl font-semibold mt-8">Total: {sum}</h3>
+      <button
+        className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 mt-4"
+        onClick={checkoutHandler}
+      >
+        Checkout
+      </button>
     </div>
   );
 }

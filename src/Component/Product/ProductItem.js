@@ -93,12 +93,10 @@ async function btnClickHandler(item) {
   const navigateHandler = () => {
     navigate("/womensclothing");
   };
-  const temp=()=>{
-    navigate('/success')
-  }
+ 
   return (
     <Fragment>
-      <button onClick={temp}>TEEEMMPP</button>
+     
       <Container style={{ marginBottom: "1rem", marginTop: "1rem" }}>
       
         <Row>
