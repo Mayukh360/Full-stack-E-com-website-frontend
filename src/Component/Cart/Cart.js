@@ -111,19 +111,7 @@ export default function Cart(props) {
     if (productList.length === 0) return;
      navigate('/checkout')
      props.onHide();
-    // try {
-    //   for (const item of productList) {
-    //     axios.delete(
-    //       `http://localhost:3000/getData/${item.id}.json`
-    //     );
-    //     console.log(item.id);
-    //   }
-
-    //   setProductList([]);
-    //   setShowAlert(true);
-    // } catch (error) {
-    //   console.log(error);
-    // }
+    
   }
 
   const hasItem = productList.length > 0;

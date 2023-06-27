@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { loadStripe } from "@stripe/stripe-js";
 import { CardElement } from "@stripe/react-stripe-js";
-import "tailwindcss/tailwind.css";
 
 export default function Checkout() {
   const [checkoutItems, setCheckoutItems] = useState([]);
@@ -11,6 +10,7 @@ export default function Checkout() {
   const stripePromise = loadStripe(
     "pk_test_51NMoiWSIM6RPcgbrzg92FDF9czosKjYfgiBIPbZCsGi4GLQBg1OYopUk6tXhxRqyqKh7R7Db6GqMgYysDbb6DySn00TZnvwtov"
   );
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -59,20 +59,24 @@ export default function Checkout() {
   return (
     <div className="container mx-auto py-8">
       <h1 className="text-2xl font-bold mb-4">Checkout Page</h1>
-      <div className="grid gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
         {checkoutItems.map((item) => (
-          <div key={item.id} className="border p-4">
-            {/* <img src={item.imageUrl} alt={item.title} /> */}
-            <h3 className="text-lg font-semibold mb-2">{item.title}</h3>
-            <p>Price: {item.price}</p>
-            <p>Quantity: {item.amount}</p>
+          <div key={item.id} className="bg-white rounded-lg shadow-md p-6">
+            <img
+              src={item.imageUrl}
+              alt={item.title}
+              className="w-32 h-32 object-cover square-full mx-auto mb-4"
+            />
+            <h2 className="text-lg font-bold mb-2">{item.title}</h2>
+            <p className="text-gray-800 font-semibold">Price: {item.price}</p>
+            <p className="text-gray-800">Quantity: {item.amount}</p>
             {/* Add additional information as needed */}
           </div>
         ))}
       </div>
-      <h3 className="text-xl font-semibold mt-8">Total: {sum}</h3>
+      <h3 className="text-2xl font-semibold mt-8">Total: {sum}</h3>
       <button
-        className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 mt-4"
+        className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 mt-4 rounded"
         onClick={checkoutHandler}
       >
         Checkout
