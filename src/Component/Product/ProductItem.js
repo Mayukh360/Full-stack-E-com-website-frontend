@@ -77,14 +77,14 @@ const productsArr = [
 ];
 
 export default function ProductItem() {
-  
+  const token=localStorage.getItem('token')
   const navigate = useNavigate();
 async function btnClickHandler(item) {
     toast.dark(`${item.title} added to cart`);
 
     await axios.post("http://localhost:3000/getData", item, {
       headers: {
-        Authorization: localStorage.getItem("token"), // Include the JWT token from local storage
+        Authorization: token, // Include the JWT token from local storage
       },
     });
 

@@ -48,11 +48,11 @@ export default function Checkout() {
 
       if (result.error) {
         console.error(result.error.message);
-        // Handle redirection error
+        
       }
     } catch (error) {
       console.log(error);
-      // Handle error
+   
     }
   };
 

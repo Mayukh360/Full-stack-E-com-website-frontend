@@ -87,8 +87,9 @@ export default function Cart(props) {
   }
 
   const sum = productList.reduce((total, item) => {
-    return total + item.price;
+    return total + item.price*item.amount;
   }, 0);
+  
 
   const cartItems = (
     <ul className={classes["cart-items"]}>

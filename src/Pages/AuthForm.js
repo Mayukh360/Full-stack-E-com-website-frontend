@@ -38,16 +38,15 @@ export default function AuthForm(props) {
         .then((response) => {
           console.log(response.data);
           const { token } = response.data;
-          const {userId}=response.data
+          const { userId } = response.data;
           console.log(token);
-          console.log(userId)
+          console.log(userId);
           localStorage.setItem("userId", userId);
           localStorage.setItem("token", token);
 
           AuthCtx.login(token);
           history("/Ecommerce-Website-using-React");
-          // Store the token in local storage or cookies
-          // Perform any necessary actions after successful signup
+
           console.log(response.data);
         })
         .catch((error) => {
@@ -60,62 +59,18 @@ export default function AuthForm(props) {
         .then((response) => {
           const { token } = response.data;
 
-          const userId = response.data.userId; // Replace `response.data.userId` with the actual response data containing the user ID
+          const userId = response.data.userId;
 
           AuthCtx.login(token);
           localStorage.setItem("userId", userId);
           localStorage.setItem("token", token);
           history("/Ecommerce-Website-using-React");
-          // Store the token in local storage or cookies
-          // Perform any necessary actions after successful login
         })
         .catch((error) => {
           console.error(error);
           // Handle login error
         });
     }
-    // let url;
-    // if (isLogin) {
-    //   url =
-    //     "http://localhost:3000/login";
-    // } else {
-    //   url =
-    //     "http://localhost:3000/signup";
-    // }
-    // fetch(url, {
-    //   method: "POST",
-    //   body: JSON.stringify({
-    //     email: enteredEmail,
-    //     password: enteredPassword,
-    //     returnSecureToken: true,
-    //   }),
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    // }).then((response) => {
-    //   setIsLoading(false);
-    //   if (response.ok) {
-    //     return response.json();
-    //   } else {
-    //     //The responde holds error
-    //     return response.json().then((data) => {
-    //       let errorMessage = "Authentication Failed,please Check input field";
-
-    //       throw new Error(errorMessage)
-    //     });
-    //   }
-    // })
-    // .then((data)=>{
-    //   AuthCtx.login(data.idToken);
-
-    //   AuthCtx.autoLogout();
-    //   // console.log(data.idToken);
-    //   history('/Ecommerce-Website-using-React');
-    //  })
-
-    // .catch((err)=>{
-    //   alert(err.message);
-    // })
   };
 
   return (
